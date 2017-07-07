@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="user">
+    <insert id="signUp" parameterType="user" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO db_jianshu.user (nick, mobile, password, lastIp) VALUE (#{nick}, #{mobile}, #{password}, #{lastIp})
+    </insert>
+    <select id="queryUserByMobile" parameterType="String" resultType="user">
+        SELECT *
+        FROM db_jianshu.user
+        WHERE mobile = #{mobile}
+    </select>
+    <update id="signInUpdate" parameterType="user">
+        UPDATE db_jianshu.user
+        SET lastIp = #{lastIp}, lastTime = #{lastTime}
+        WHERE id = #{id}
+    </update>
+    <select id="queryUserByNick" parameterType="String" resultType="user">
+        SELECT *
+        FROM db_jianshu.user
+        WHERE nick = #{nick}
+    </select>
+</mapper>
